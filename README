@@ -1,0 +1,19 @@
+Pahontu Stefan Alin 331CA
+
+	After studying the sequential implementation, I realised I can
+bring a huge improvement to the comparing function used by the qsort.
+The qsort takes an average of NlogN  time with a compare function that
+takes constant time. However, because the initial compare function takes
+O(N) as well, as it computes the number of items in the rucsack every 
+time, it reaches a total of N^2logN time complexity. I can vastly improve 
+that by adding a new field in the individual structure that stores this
+number and only compute it once for every individual. This way, I can 
+speed up the entire program, as the qsort will now only take NlogN time 
+to complete.
+	I have chosen to parallellize the compute_fitness function, the first
+for loop that creates my initial generation, the elite selection, the two
+mutation phases, the crossover and freeing the generation resources, in order
+to achieve an even better time complexity. 
+	I have placed barriers after every step in the genetic algorithm to ensure
+correctness and have chosen the first thread to take care of the sorting and 
+printing of the result, so no hazards or multiple results would appear.
